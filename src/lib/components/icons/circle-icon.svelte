@@ -1,0 +1,23 @@
+<svg
+	stroke="#AE5499"
+	fill="#AE5499"
+	stroke-width="#AE5499"
+	viewBox="0 0 24 24"
+	height="20px"
+	width="20px"
+	xmlns="http://www.w3.org/2000/svg"
+	class="ml-1 h-5 max-h-5 min-h-5 w-5 min-w-5 max-w-5"
+	><g id="Circle_Info"
+		><g
+			><g
+				><path d="M11.5,15a.5.5,0,0,0,1,0h0V10.981a.5.5,0,0,0-1,0Z"></path><circle
+					cx="12"
+					cy="8.999"
+					r="0.5"
+				></circle></g
+			><path
+				d="M12,2.065A9.934,9.934,0,1,1,2.066,12,9.945,9.945,0,0,1,12,2.065Zm0,18.867A8.934,8.934,0,1,0,3.066,12,8.944,8.944,0,0,0,12,20.932Z"
+			></path></g
+		></g
+	></svg
+>

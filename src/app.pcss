@@ -1,4 +1,20 @@
 /* Write your global styles here, in PostCSS syntax */
 @tailwind base;
 @tailwind components;
-@tailwind utilities
+@tailwind utilities;
+
+* {
+	/* Esse e um padrao de fallback de fonts que passam de sistema em sistema e faz com que o fallback seja o melhor possivel */
+	font-family:
+		'Poppins',
+		system-ui,
+		-apple-system,
+		BlinkMacSystemFont,
+		'Segoe UI',
+		Roboto,
+		'Helvetica Neue',
+		Arial,
+		'Noto Sans',
+		'Liberation Sans',
+		sans-serif;
+}
