@@ -1,5 +1,5 @@
 <svg
-	class="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-[#CDD5E0]"
+	class="text-white2 absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2"
 	fill="none"
 	stroke="currentColor"
 	stroke-width="2"

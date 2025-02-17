@@ -39,12 +39,12 @@
 	}
 </script>
 
-<table class="min-w-[1000px]">
-	<thead class="rounded-t-lg bg-[#F1F5F9]">
+<table class="min-w-[1000px] overflow-hidden rounded-xl">
+	<thead class="bg-white1 rounded-t-lg">
 		<tr class="">
 			{#each titles as data}
 				<th
-					class="border-b border-[#E0E7FF] p-3 text-left text-[#2D3E50]
+					class="border-white4 text-tertiary border-b p-3 text-left
 					first:rounded-tl-lg last:rounded-tr-lg
 					{data.icon ? 'flex items-center' : ''}
 					"
@@ -59,13 +59,13 @@
 	</thead>
 	<tbody class="">
 		{#each rows as row}
-			<tr class="group h-20 odd:bg-[#FFFFFF] even:bg-[#F1F5F9] hover:bg-[#FCEBF3]">
+			<tr class="even:bg-white1 hover:bg-white3 group h-20 odd:bg-white">
 				{#each row.tds as td}
-					<td class="pl-3 {td.secondaryDescription ? 'font-medium' : 'font-normal'} text-[#7A8CA0]">
-						<span class="group-hover:text-[#C54E7C]">{td.description}</span>
+					<td class="pl-3 {td.secondaryDescription ? 'font-medium' : 'font-normal'} text-secondary">
+						<span class="group-hover:text-primary">{td.description}</span>
 						{#if td.secondaryDescription}
 							<br />
-							<span class="font-normal text-[#7A8CA0]">{td.secondaryDescription}</span>
+							<span class="text-secondary font-normal">{td.secondaryDescription}</span>
 						{/if}
 					</td>
 				{/each}
@@ -73,14 +73,14 @@
 		{/each}
 		{#if rows.length === 0}
 			<tr class="h-96">
-				<td class="text-center font-medium text-[#7A8CA0]" colspan={titles.length}>
+				<td class="text-secondary text-center font-medium" colspan={titles.length}>
 					Nenhum registro encontrado
 					<br />
 					<span class=" font-normal">
 						Tente alterar a sua pesquisa ou filtro para encontrar o que deseja.
 					</span>
 					<br />
-					<button on:click={onClearFilters} class="mt-5 font-medium text-[#A03582]">
+					<button on:click={onClearFilters} class="text-primary mt-5 font-medium">
 						Limpar Filtros
 					</button>
 				</td>
@@ -89,10 +89,10 @@
 	</tbody>
 </table>
 
-<div class="my-4 flex justify-start gap-2 border-t border-[#E0E0E0] md:justify-center">
+<div class="border-white2 my-4 flex justify-start gap-2 border-t md:justify-center">
 	{#if currentPage > 1}
 		<button
-			class="flex items-center gap-2 rounded-md px-4 py-2 text-[#7A8CA0] hover:bg-gray-300 disabled:opacity-50"
+			class="text-secondary flex items-center gap-2 rounded-md px-4 py-2 hover:bg-gray-300 disabled:opacity-50"
 			on:click={() => onPageChange(currentPage - 1)}
 		>
 			<ArrowButton />Anterior
@@ -102,21 +102,21 @@
 	<button
 		on:click={() => onPageChange(1)}
 		class="
-		{currentPage === 1 ? 'border-t-2 border-t-[#A03582] text-[#A03582]' : ''}
-		 px-3 py-2 text-sm font-medium text-[#7A8CA0] transition-colors duration-200 ease-in-out hover:bg-gray-300 hover:text-[#A03582]"
+		{currentPage === 1 ? 'text-primary border-t-primary border-t-2' : ''}
+		 text-secondary hover:text-primary px-3 py-2 text-sm font-medium transition-colors duration-200 ease-in-out hover:bg-gray-300"
 	>
 		1
 	</button>
 
 	{#if currentPage > 6}
-		<span class="mb-2 flex items-end text-[#7A8CA0]">...</span>
+		<span class="text-secondary mb-2 flex items-end">...</span>
 	{/if}
 
 	{#each numberPages.slice(initialSlice, finalSlice) as page}
 		<button
 			class="
-			{currentPage === page ? 'border-t-2 border-t-[#A03582] text-[#A03582]' : ''}
-			 px-3 py-2 text-sm font-medium text-[#7A8CA0] transition-colors duration-200 ease-in-out hover:bg-gray-300 hover:text-[#A03582]
+			{currentPage === page ? 'border-t-primary text-primary border-t-2' : ''}
+			 text-secondary hover:text-primary px-3 py-2 text-sm font-medium transition-colors duration-200 ease-in-out hover:bg-gray-300
 			"
 			on:click={() => onPageChange(page)}
 		>
@@ -125,12 +125,12 @@
 	{/each}
 
 	{#if totalPages > 10 && currentPage < totalPages - 4}
-		<span class="mb-2 flex items-end text-[#7A8CA0]">...</span>
+		<span class="text-secondary mb-2 flex items-end">...</span>
 		<button
 			on:click={() => onPageChange(totalPages)}
 			class="
-			{currentPage === totalPages ? 'border-t-2 border-t-[#A03582] text-[#A03582]' : ''}
-			 px-3 py-2 text-sm font-medium text-[#7A8CA0] transition-colors duration-200 ease-in-out hover:bg-gray-300 hover:text-[#A03582]"
+			{currentPage === totalPages ? 'border-t-primary text-primary border-t-2' : ''}
+			 text-secondary hover:text-primary px-3 py-2 text-sm font-medium transition-colors duration-200 ease-in-out hover:bg-gray-300"
 		>
 			{totalPages}
 		</button>
@@ -138,7 +138,7 @@
 
 	{#if currentPage < totalPages}
 		<button
-			class="flex items-center gap-2 rounded-md px-4 py-2 text-[#7A8CA0] hover:bg-gray-300 disabled:opacity-50"
+			class="text-secondary flex items-center gap-2 rounded-md px-4 py-2 hover:bg-gray-300 disabled:opacity-50"
 			on:click={() => onPageChange(currentPage + 1)}
 		>
 			Proximo

@@ -22,7 +22,7 @@
 
 <div class="container mx-auto h-screen p-4">
 	<div class=" flex items-center justify-between">
-		<h1 class="text-2xl font-bold text-[#A03582]">Contatos</h1>
+		<h1 class="text-primary text-2xl font-bold">Contatos</h1>
 		<div class="flex gap-4">
 			<button
 				on:click={() =>
@@ -49,7 +49,7 @@
 									: '-'
 							}))
 					)}
-				class="flex items-center gap-2 rounded-lg border border-[#E0E0E0] bg-white px-4 py-2 text-[#A03582] shadow-md transition hover:bg-[#F5F5F5]"
+				class="border-white2 text-textborder-primary hover:bg-white3 flex items-center gap-2 rounded-lg border bg-white px-4 py-2 shadow-md transition"
 			>
 				<ArrowDown />
 				Exportar
@@ -59,13 +59,13 @@
 					bind:value={filterText}
 					type="text"
 					placeholder="Pesquisar"
-					class="w-48 rounded-lg border border-[#E0E0E0] bg-white px-4 py-2 pr-10 text-[#7A8CA0] shadow-md transition focus:border-[#A03582] focus:ring-[#A03582]"
+					class="border-white2 text-secondary focus:border-primary focus:ring-textborder-primary w-48 rounded-lg border bg-white px-4 py-2 pr-10 shadow-md transition"
 				/>
 				<Search />
 			</div>
 		</div>
 	</div>
-	<h5 class="my-6 text-[#7A8CA0]">
+	<h5 class="text-secondary my-6">
 		Exibindo {currentPerPage} do total de {totalAmountFiltered} registros encontrados
 	</h5>
 	<div class="flex w-full flex-col justify-center overflow-x-auto">
