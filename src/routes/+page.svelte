@@ -4,6 +4,7 @@
 	import CircleIcon from '$lib/components/icons/circle-icon.svelte';
 	import ArrowDown from '$lib/components/icons/arrow-down.svelte';
 	import Search from '$lib/components/icons/search.svelte';
+	import { exportToExcel } from '$lib/utils/xlsx.js';
 
 	let currentPage = 1;
 	let currentPerPage = 5;
@@ -24,6 +25,30 @@
 		<h1 class="text-2xl font-bold text-[#A03582]">Contatos</h1>
 		<div class="flex gap-4">
 			<button
+				on:click={() =>
+					exportToExcel(
+						people
+							.filter(
+								({ email, name, phone }) =>
+									email.toLowerCase().includes(filterText.toLowerCase()) ||
+									name.toLowerCase().includes(filterText.toLowerCase()) ||
+									phone.toLowerCase().includes(filterText.toLowerCase())
+							)
+							.map(({ name, email, phone, cargos, departamentos, ultimoAcesso }) => ({
+								Nome: name,
+								Email: email,
+								Telefone: phone,
+								Cargos: cargos.join(', '),
+								Departamentos: departamentos.join(', '),
+								'Ultimo Acesso': ultimoAcesso
+									? new Intl.DateTimeFormat('pt-BR', {
+											day: '2-digit',
+											month: 'short',
+											year: 'numeric'
+										}).format(new Date(ultimoAcesso))
+									: '-'
+							}))
+					)}
 				class="flex items-center gap-2 rounded-lg border border-[#E0E0E0] bg-white px-4 py-2 text-[#A03582] shadow-md transition hover:bg-[#F5F5F5]"
 			>
 				<ArrowDown />
