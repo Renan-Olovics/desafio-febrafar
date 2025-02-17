@@ -20,10 +20,10 @@
 	$: (currentPage = 1), filterText;
 </script>
 
-<div class="container mx-auto h-screen p-4">
-	<div class=" flex items-center justify-between">
+<div class="container mx-auto mt-9 h-screen min-w-[500px] p-4">
+	<div class=" items-center justify-between sm:flex">
 		<h1 class="text-primary text-2xl font-bold">Contatos</h1>
-		<div class="flex gap-4">
+		<div class="mt-5 flex gap-4 sm:mt-0 sm:flex-row">
 			<button
 				on:click={() =>
 					exportToExcel(
