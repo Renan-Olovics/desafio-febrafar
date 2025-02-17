@@ -6,8 +6,11 @@
 	import Search from '$lib/components/icons/search.svelte';
 	import { exportToExcel } from '$lib/utils/xlsx.js';
 
-	let currentPage = 1;
-	let currentPerPage = 5;
+	const INITIAL_PAGE = 1;
+	const INITIAL_PER_PAGE = 5;
+
+	let currentPage = INITIAL_PAGE;
+	let currentPerPage = INITIAL_PER_PAGE;
 	let filterText = '';
 	$: pages = Math.ceil(totalAmountFiltered / currentPerPage);
 	$: totalAmountFiltered = people.filter(

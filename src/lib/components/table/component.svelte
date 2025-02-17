@@ -1,4 +1,7 @@
 <script lang="ts">
+	const MIN_VALUE_TO_START_SLICING = 6;
+	const MAX_VALUE_TO_SHOW = 10;
+
 	import ArrowButton from '../icons/arrow-button.svelte';
 	export let titles: {
 		title: string;
@@ -20,10 +23,10 @@
 	$: numberPages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
 	let initialSlice = 1;
-	let finalSlice = 10;
+	let finalSlice = MAX_VALUE_TO_SHOW;
 
 	$: {
-		if (currentPage > 6 && currentPage < totalPages - 1) {
+		if (currentPage > MIN_VALUE_TO_START_SLICING && currentPage < totalPages - 1) {
 			initialSlice = currentPage - 5;
 			finalSlice = currentPage + 4;
 		}
@@ -32,9 +35,9 @@
 			initialSlice = totalPages - 9;
 			finalSlice = totalPages;
 		}
-		if (currentPage < 6) {
+		if (currentPage < MIN_VALUE_TO_START_SLICING) {
 			initialSlice = 1;
-			finalSlice = 10;
+			finalSlice = MAX_VALUE_TO_SHOW;
 		}
 	}
 </script>
@@ -42,7 +45,7 @@
 <div class="min-w-[1000px] overflow-hidden rounded-xl border-2 shadow">
 	<table class="w-full border-collapse rounded-xl">
 		<thead class="bg-white1 rounded">
-			<tr class="">
+			<tr>
 				{#each titles as data}
 					<th
 						class="border-white4 text-tertiary border-b p-3 text-left
@@ -58,9 +61,9 @@
 				{/each}
 			</tr>
 		</thead>
-		<tbody class="">
+		<tbody>
 			{#each rows as row}
-				<tr class="even:bg-white1 hover:bg-white3 group h-20 odd:bg-white">
+				<tr class="even:bg-white1 hover:bg-white3 group h-20 cursor-pointer odd:bg-white">
 					{#each row.tds as td}
 						<td
 							class="pl-3 {td.secondaryDescription ? 'font-medium' : 'font-normal'} text-secondary"
