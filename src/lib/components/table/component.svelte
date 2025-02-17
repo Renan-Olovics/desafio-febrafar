@@ -15,8 +15,9 @@
 	export let totalPages = 0;
 	export let currentPage = 1;
 	export let onPageChange: (page: number) => void;
+	export let onClearFilters: () => void;
 
-	let numberPages = Array.from({ length: totalPages }, (_, i) => i + 1);
+	$: numberPages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
 	let initialSlice = 1;
 	let finalSlice = 10;
@@ -38,7 +39,7 @@
 	}
 </script>
 
-<table class="min-w-[1000px] border-separate border-spacing-y-4 shadow-xl">
+<table class="min-w-[1000px]">
 	<thead class="rounded-t-lg bg-[#F1F5F9]">
 		<tr class="">
 			{#each titles as data}
@@ -58,7 +59,7 @@
 	</thead>
 	<tbody class="">
 		{#each rows as row}
-			<tr class="group h-16 max-h-16 odd:bg-[#FFFFFF] even:bg-[#F1F5F9] hover:bg-[#FCEBF3]">
+			<tr class="group h-20 odd:bg-[#FFFFFF] even:bg-[#F1F5F9] hover:bg-[#FCEBF3]">
 				{#each row.tds as td}
 					<td class="pl-3 {td.secondaryDescription ? 'font-medium' : 'font-normal'} text-[#7A8CA0]">
 						<span class="group-hover:text-[#C54E7C]">{td.description}</span>
@@ -70,10 +71,25 @@
 				{/each}
 			</tr>
 		{/each}
+		{#if rows.length === 0}
+			<tr class="h-96">
+				<td class="text-center font-medium text-[#7A8CA0]" colspan={titles.length}>
+					Nenhum registro encontrado
+					<br />
+					<span class=" font-normal">
+						Tente alterar a sua pesquisa ou filtro para encontrar o que deseja.
+					</span>
+					<br />
+					<button on:click={onClearFilters} class="mt-5 font-medium text-[#A03582]">
+						Limpar Filtros
+					</button>
+				</td>
+			</tr>
+		{/if}
 	</tbody>
 </table>
 
-<div class="my-4 flex justify-center gap-2 border-t border-[#E0E0E0]">
+<div class="my-4 flex justify-start gap-2 border-t border-[#E0E0E0] md:justify-center">
 	{#if currentPage > 1}
 		<button
 			class="flex items-center gap-2 rounded-md px-4 py-2 text-[#7A8CA0] hover:bg-gray-300 disabled:opacity-50"

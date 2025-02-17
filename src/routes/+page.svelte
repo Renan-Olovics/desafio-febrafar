@@ -38,10 +38,11 @@
 		</div>
 	</div>
 	<h5 class="my-6 text-[#7A8CA0]">
-		Exibindo {currentPerPage} do total de {people.length} registros encontrados
+		Exibindo {currentPerPage} do total de {totalAmountFiltered} registros encontrados
 	</h5>
 	<div class="flex w-full flex-col justify-center overflow-x-auto">
 		<Table
+			onClearFilters={() => (filterText = '')}
 			onPageChange={(page) => (currentPage = page)}
 			{currentPage}
 			totalPages={pages}
