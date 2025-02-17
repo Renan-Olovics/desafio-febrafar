@@ -39,55 +39,59 @@
 	}
 </script>
 
-<table class="min-w-[1000px] overflow-hidden rounded-xl">
-	<thead class="bg-white1 rounded-t-lg">
-		<tr class="">
-			{#each titles as data}
-				<th
-					class="border-white4 text-tertiary border-b p-3 text-left
+<div class="min-w-[1000px] overflow-hidden rounded-xl border-2 shadow">
+	<table class="w-full border-collapse rounded-xl">
+		<thead class="bg-white1 rounded">
+			<tr class="">
+				{#each titles as data}
+					<th
+						class="border-white4 text-tertiary border-b p-3 text-left
 					first:rounded-tl-lg last:rounded-tr-lg
 					{data.icon ? 'flex items-center' : ''}
 					"
-				>
-					{data.title}
-					{#if data.icon}
-						<svelte:component this={data.icon} />
-					{/if}
-				</th>
-			{/each}
-		</tr>
-	</thead>
-	<tbody class="">
-		{#each rows as row}
-			<tr class="even:bg-white1 hover:bg-white3 group h-20 odd:bg-white">
-				{#each row.tds as td}
-					<td class="pl-3 {td.secondaryDescription ? 'font-medium' : 'font-normal'} text-secondary">
-						<span class="group-hover:text-primary">{td.description}</span>
-						{#if td.secondaryDescription}
-							<br />
-							<span class="text-secondary font-normal">{td.secondaryDescription}</span>
+					>
+						{data.title}
+						{#if data.icon}
+							<svelte:component this={data.icon} />
 						{/if}
-					</td>
+					</th>
 				{/each}
 			</tr>
-		{/each}
-		{#if rows.length === 0}
-			<tr class="h-96">
-				<td class="text-secondary text-center font-medium" colspan={titles.length}>
-					Nenhum registro encontrado
-					<br />
-					<span class=" font-normal">
-						Tente alterar a sua pesquisa ou filtro para encontrar o que deseja.
-					</span>
-					<br />
-					<button on:click={onClearFilters} class="text-primary mt-5 font-medium">
-						Limpar Filtros
-					</button>
-				</td>
-			</tr>
-		{/if}
-	</tbody>
-</table>
+		</thead>
+		<tbody class="">
+			{#each rows as row}
+				<tr class="even:bg-white1 hover:bg-white3 group h-20 odd:bg-white">
+					{#each row.tds as td}
+						<td
+							class="pl-3 {td.secondaryDescription ? 'font-medium' : 'font-normal'} text-secondary"
+						>
+							<span class="group-hover:text-primary">{td.description}</span>
+							{#if td.secondaryDescription}
+								<br />
+								<span class="text-secondary font-normal">{td.secondaryDescription}</span>
+							{/if}
+						</td>
+					{/each}
+				</tr>
+			{/each}
+			{#if rows.length === 0}
+				<tr class="h-96">
+					<td class="text-secondary text-center font-medium" colspan={titles.length}>
+						Nenhum registro encontrado
+						<br />
+						<span class=" font-normal">
+							Tente alterar a sua pesquisa ou filtro para encontrar o que deseja.
+						</span>
+						<br />
+						<button on:click={onClearFilters} class="text-primary mt-5 font-medium">
+							Limpar Filtros
+						</button>
+					</td>
+				</tr>
+			{/if}
+		</tbody>
+	</table>
+</div>
 
 <div class="border-white2 my-4 flex justify-start gap-2 border-t md:justify-center">
 	{#if currentPage > 1}
