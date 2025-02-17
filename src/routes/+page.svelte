@@ -9,8 +9,11 @@
 	let currentPerPage = 5;
 	let filterText = '';
 	$: pages = Math.ceil(totalAmountFiltered / currentPerPage);
-	$: totalAmountFiltered = people.filter((item) =>
-		item.name.toLowerCase().includes(filterText.toLowerCase())
+	$: totalAmountFiltered = people.filter(
+		({ name, email, phone }) =>
+			email.toLowerCase().includes(filterText.toLowerCase()) ||
+			name.toLowerCase().includes(filterText.toLowerCase()) ||
+			phone.toLowerCase().includes(filterText.toLowerCase())
 	).length;
 
 	$: (currentPage = 1), filterText;
@@ -54,7 +57,12 @@
 				{ title: 'Ultimo Acesso', icon: CircleIcon }
 			]}
 			rows={people
-				.filter((item) => item.name.toLowerCase().includes(filterText.toLowerCase()))
+				.filter(
+					({ email, name, phone }) =>
+						email.toLowerCase().includes(filterText.toLowerCase()) ||
+						name.toLowerCase().includes(filterText.toLowerCase()) ||
+						phone.toLowerCase().includes(filterText.toLowerCase())
+				)
 				.slice((currentPage - 1) * currentPerPage, currentPage * currentPerPage)
 				.map((item) => ({
 					tds: [
